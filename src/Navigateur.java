@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 
-public class Navigateur {
+public class Navigateur implements Comparable<Navigateur> {
 	private String nomDuNavigateur;
+	private String nom = "";
 	private ArrayList<Position> listPos;
 	
 	public Navigateur(String nomNavigateur) {
@@ -9,8 +10,17 @@ public class Navigateur {
 		listPos = new ArrayList<Position>();
 	}
 	
-	public Navigateur() {
-		this.nomDuNavigateur = "";
+	@Override
+	public int compareTo(Navigateur n) {
+		//codage de l’algorithme de tri de 2 objets Profile.
+		// 1 : sur le nom sans tenir compte des majuscules et minuscules
+		int r = nom.compareTo(n.nom);
+		// 2
+		//int r = nom.toUpperCase().compareTo(n.nom.toUpperCase());
+		//3
+		// int r = (age > n.age) ? 1 : -1;
+		//System.out.println("texte:" + nom + " n.texte:" + n.nom);
+		return r;
 	}
 	
 	public void addPosition(Position positions2) {

@@ -1,6 +1,9 @@
+import java.util.List;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
 
 
@@ -9,19 +12,20 @@ public class Main {
 	private static String userReply="";
 	private static Navigateur nav1,nav2,nav3,nav4;
 	
-	private static String[] navName = new String[]{"joyeux","Atchoum","Simplet","Grincheux", "Zelephe"}; 
+	private static String[] navName = new String[]{"joyeux","Atchoum","Simplet","Grincheux"}; 
 	private static double[][] positions = new double[][]{{1.2,4.2,0,12.3,42,55},		//x = 1.2	; y = 4.2
 														{4,120,1.5,8.5,45,55},
 														{8,10,48,57,78,55},
 														{41,85,58,75,357,55}};
-														
+
+											
 	public static void main(String[] args) {
 		
 		nav1 = new Navigateur(navName[0]);
 		nav2 = new Navigateur(navName[1]);
 		nav3 = new Navigateur(navName[2]);
 		nav4 = new Navigateur(navName[3]);
-		
+
 		
 		for (int i = 0, j = 1; i < (positions.length+2) && j < (positions.length+2); i=i+2, j=j+2) {
 			nav1.addPosition(new Position(positions[0][i],positions[0][j]));
@@ -41,6 +45,15 @@ public class Main {
 		
 		writeToCSV();
 		userNavInput();
+		
+		String[] navList = {nav1.getNavName(), nav2.getNavName(), nav3.getNavName(), nav4.getNavName()};
+		List<String> listNav = Arrays.asList(navList);
+		
+		Collections.sort(listNav, String.CASE_INSENSITIVE_ORDER);
+		 //affichage de la liste triée.
+		 for(int i=0 ; i < listNav.size();i++) {
+		 System.out.println(listNav.get(i).toString());
+		 }
 
 	}
 	
